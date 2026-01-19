@@ -1,25 +1,35 @@
 import java.util.Scanner;
 
-/**
- * Lab 1 COMP 2503 Winter 2023 Last Updated by: @author Maryam Elahi
- * 
- */
+/*
+ * Lab1Review - A program that reads from the input stream System.in, word
+ * by word, and writes the words, one line at a time, to the output stream
+ * System.out.
+*/
+
 public class Lab1Review {
-	Scanner input;
 
-	public void run() {
-		input = new Scanner( System.in);
-		while ( input.hasNext()) {
-			String word = input.next().trim().toLowerCase().replaceAll( "[^a-z]", "");
-			if ( word.length() > 0) {
-				System.out.println( word);
+    // Run method
+    public void run () {
+        Scanner i = new Scanner(System.in);
+
+        // input stream
+        while (i.hasNext()) {
+            String w = i.next().toLowerCase().trim().replaceAll("[^a-z0-9]", "");
+          
+			if ( w.length() > 0) {
+				System.out.println(w);
 			}
-		}
-		System.out.println( "End of stream detected. Terminating the program.");
-	}
+        }
+        
+        //close
+        i.close();
+    } 
 
-	public static void main( String[] args) {
-		Lab1Review lab1 = new Lab1Review();
-		lab1.run();
-	}
+    // Main method
+    public static void main(String[] args) {
+        Lab1Review lab1 = new Lab1Review();
+        lab1.run();
+    } 
+
+
 }
