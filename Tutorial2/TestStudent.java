@@ -16,12 +16,24 @@ public class TestStudent
 		studentList.add(filloutStudentObject("Neville", "L.", "Herbology", 4));
 		studentList.add(filloutStudentObject("Barty", "Crouch", "DarkStuff", 12));
 		
+
+		CompStudent studentCompare = new CompStudent();
+
+
 		// Sort with default order (based on Last Name, First Name), and print
 		// Collections.sort(studentList);
 		printStudentList(studentList);
 		
 		System.out.println();
 		
+
+		// Natural ordering using Comparable
+		// Collections.sort(studentList);  // Sorts by last name, then first name
+		
+		// Custom ordering using Comparator
+		Collections.sort(studentList, new CompStudent());  // Sorts by program, OWL, ID
+
+
 		// Sort based on customized comparator method, and print
 		// Collections.sort(studentList, new CompStudent);
 		printStudentList(studentList);
