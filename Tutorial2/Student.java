@@ -44,6 +44,20 @@ public class Student
        // return this.id - other.id;
        return other.getID() - getID();
     }
+
+    // natural ordering is by ID
+    /**
+     * Check if this student is equal to another object
+     * @param o
+     * @return boolean
+     */
+    public boolean equals( Object o) {
+        if ( o instanceof Student) {
+            Student other = (Student) o;
+            return this.id == other.id;
+        }
+        return false;
+    }
     
     public int getID() { return id;}
     public void setFirstName( String fn) { firstName = fn;}
