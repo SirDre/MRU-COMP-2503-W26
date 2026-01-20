@@ -34,6 +34,16 @@ public class Student
         program = "";
         owl = 0;
     }
+
+    /**
+     * Compare this student to another student based on ID
+     * @param other
+     * @return
+     */
+    public int compareTo( Student other) {
+       // return this.id - other.id;
+       return other.getID() - getID();
+    }
     
     public int getID() { return id;}
     public void setFirstName( String fn) { firstName = fn;}
