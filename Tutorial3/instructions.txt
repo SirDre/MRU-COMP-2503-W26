@@ -1,0 +1,32 @@
+Table 
+ - Rows
+ - Columns
+ 
+ id | test
+ -------
+  1 | computer
+  3 | people 
+  2 | 
+  
+Clsss Row implement Comparable
+  Row number
+  text 
+  getters
+  setters
+  constructor
+  toString()
+  
+Class Tables
+  Arraylist Rows
+  addRow ()
+  count ()
+  printTable ()
+
+
+instruction
+ - create table
+ - read text file to populate table
+ - printTable
+
+MySQL
+Select * 
