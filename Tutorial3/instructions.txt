@@ -1,32 +1,61 @@
-Table 
- - Rows
- - Columns
- 
- id | test
- -------
-  1 | computer
-  3 | people 
-  2 | 
-  
-Clsss Row implement Comparable
-  Row number
-  text 
-  getters
-  setters
-  constructor
-  toString()
-  
-Class Tables
-  Arraylist Rows
-  addRow ()
-  count ()
-  printTable ()
+STEP 1: Place all files in the same directory
+----------------------------------------------
+Make sure these files are all in ONE directory:
+  ✓ Column.java
+  ✓ Row.java
+  ✓ Tables.java
+  ✓ RowTextComparator.java
+  ✓ Main.java
+  ✓ data.txt  <-- IMPORTANT: This file MUST be here!
 
 
-instruction
- - create table
- - read text file to populate table
- - printTable
+STEP 2: Open command prompt/terminal in that directory
+-------------------------------------------------------
+Navigate to the directory containing all the files above.
 
-MySQL
-Select * 
+
+STEP 3: Compile the Java files
+-------------------------------
+Run this command:
+    javac *.java
+
+This will create .class files in the same directory.
+
+
+STEP 4: Run the program
+------------------------
+Run this command:
+    java Main
+
+
+WHAT TO EXPECT:
+---------------
+The program will:
+1. Read data from data.txt
+2. Display the table as read from file
+3. Display the table sorted by ID (using Comparable)
+4. Display the table sorted by text (using Comparator)
+5. Add a new row and display the updated table
+
+
+TROUBLESHOOTING:
+----------------
+If you get "FileNotFoundException: data.txt":
+  → Make sure data.txt is in the SAME directory as Main.class
+  → Make sure you're running "java Main" FROM that directory
+  → The program will show you where it's looking for the file
+
+If you get "ClassNotFoundException":
+  → Make sure you compiled first with "javac *.java"
+  → Make sure all .java files are in the same directory
+
+
+DATA FILE FORMAT (data.txt):
+-----------------------------
+Each line should be in the format: id,text
+Example:
+1,computer
+3,people
+2,animals
+
+Do not include a header line in the file.
