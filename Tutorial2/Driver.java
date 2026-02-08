@@ -76,7 +76,7 @@ public class Driver {
         }
        
         // Find the node BEFORE the one to delete
-        Node<String> current = head;
+       // Node<String> current = head;
    
         
         return head;
