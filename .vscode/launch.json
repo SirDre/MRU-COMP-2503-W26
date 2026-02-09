@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "A1",
+            "request": "launch",
+            "mainClass": "A1",
+            "projectName": "MRU-COMP-2503-W26_d6bf5b7f"
+        },
+        {
+            "type": "java",
             "name": "LinkedList",
             "request": "launch",
             "mainClass": "DataStructure.LinkedList",
