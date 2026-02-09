@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 
 /**
@@ -151,7 +152,7 @@ public class Table {
         for (int i = 0; i < rows.size(); i++) {
             Row row = rows.get(i);
 
-            if (row.getText().toLowerCase().contains(keyword)) { // check if the row text contains the keyword (case-insensitive)
+            if (row.getText().toLowerCase().contains(keyword.toLowerCase())) { // check if the row text contains the keyword (case-insensitive)
                 filteredTable.addRow(row.getText()); // add the matching row to the filtered table
             }
         }
@@ -167,6 +168,6 @@ public class Table {
      */
     @Override
     public String toString() {
-        return "Table{rows=" + rows.size() + "}";
+        return id + ": " + rows.size();
     }
 }

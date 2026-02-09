@@ -45,8 +45,13 @@ public class A1 {
 
         System.out.println("Row count: " + table.getRowCount()); // print the number of rows in the table
 
-        System.out.println("Sorting table alphabetically by row text...");
+        System.out.println("Sorting table naturally.");
         table.sortByNaturalRows(); // sort the rows in natural order (alphabetically)
+
+        System.out.println("Sorting table Comparator.");
+        
+        
+        //table.sortByComparator(); // sort the rows in natural order (alphabetically)
 
         System.out.println("All rows:");
         table.printTable(table.getRowCount()); // print all rows
@@ -54,9 +59,6 @@ public class A1 {
         System.out.println("\nRows containing 'the':");
         Table filteredTable = table.search("the"); // print only rows containing "the" (case-insensitive)
         filteredTable.printTable(table.getRowCount()); // print the filtered rows    
-
-
-
 
         scanner.close(); // close the scanner
     }  
