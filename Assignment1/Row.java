@@ -66,7 +66,7 @@ public class Row implements Comparable<Row> {
      */
     @Override
     public String toString() {
-        return "Row{id=" + id + ", text='" + text + "'}";
+        return id + ": " + text ;
     }
 
     /**

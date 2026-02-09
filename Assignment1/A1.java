@@ -49,11 +49,11 @@ public class A1 {
         table.sortByNaturalRows(); // sort the rows in natural order (alphabetically)
 
         System.out.println("All rows:");
-        table.printTable(10); // print all rows
+        table.printTable(table.getRowCount()); // print all rows
 
         System.out.println("\nRows containing 'the':");
         Table filteredTable = table.search("the"); // print only rows containing "the" (case-insensitive)
-        
+        filteredTable.printTable(table.getRowCount()); // print the filtered rows    
 
 
 

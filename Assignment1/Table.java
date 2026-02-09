@@ -30,7 +30,7 @@ public class Table {
      */
     public Table() {
         this.rows = new ArrayList<>();
-        this.id = 0; // Unique identifier can be set as needed
+        this.id = 1; // Unique identifier can be set as needed
     }
 
     /**
@@ -46,7 +46,7 @@ public class Table {
      * @return the next available id
      */
     public int getNextId() {
-        return id++;
+        return id;
     }
 
     /**
@@ -97,20 +97,19 @@ public class Table {
      */
     public void printTable(int r) {
 
-        int printRows = 0; // number of rows to print
+        int printRows; // number of rows to print
 
         if (r == 0) {
             printRows = rows.size(); // print all rows   
-        } else if (r > rows.size()) {
+        } else {
             printRows = Math.min(r, rows.size()); // print all rows if r is greater than the number of rows
         } 
 
         // print each row based on the filter option
-        for (int i = 0; i < printRows; i++) {
-       
-            System.out.println(rows.get(i)); // print row id and text
- 
+        for (int i = 0; i < printRows; i++) {       
+            System.out.println(rows.get(i)); // print row id and text 
         }
+
     }
 
     /**
@@ -134,7 +133,7 @@ public class Table {
      * @see Comparator
      * @see Collections#sort(List, Comparator)
      */
-    public void sortByCustomRows(Comparator<Row> comparator) {
+    public void sortByComparator(Comparator<Row> comparator) {
         Collections.sort(rows, comparator); // sorts based on the provided Comparator
     }
     
@@ -152,13 +151,14 @@ public class Table {
         for (int i = 0; i < rows.size(); i++) {
             Row row = rows.get(i);
 
-            if (row.getText().toLowerCase().contains(keyword.toLowerCase())) { // check if the row text contains the keyword (case-insensitive)
+            if (row.getText().toLowerCase().contains(keyword)) { // check if the row text contains the keyword (case-insensitive)
                 filteredTable.addRow(row.getText()); // add the matching row to the filtered table
             }
         }
 
         return filteredTable; // return the new Table with the filtered results       
     }
+
     /**
      * Returns a string representation of the Table object.
      * O(n) since we need to iterate through all rows to build the string representation
