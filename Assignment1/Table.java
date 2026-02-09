@@ -70,8 +70,8 @@ public class Table {
      * @param text the content of the new row
      */
     public void addRow(String text) {
-     //  Row row = new Row(id++, text);
-     //  rows.add(row);
+       Row row = new Row(id++, text);
+       rows.add(row);
     }
 
     /**
