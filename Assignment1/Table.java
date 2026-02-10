@@ -68,10 +68,11 @@ public class Table {
 
     /**
      * Adds a new row to the table with the given text.
+     * Create a new Row object with the current id and the provided text
      * @param text the content of the new row
      */
     public void addRow(String text) {
-       Row row = new Row(id++, text);
+       Row row = new Row(id++, text); // Increment id for the next row to ensure each row has a unique identifier
        rows.add(row);
     }
 
@@ -103,7 +104,7 @@ public class Table {
         if (r == 0) {
             printRows = rows.size(); // print all rows   
         } else {
-            printRows = Math.min(r, rows.size()); // print all rows if r is greater than the number of rows
+            printRows = (r > rows.size()) ? rows.size() : r; // print all rows if r is greater than the number of rows
         } 
 
         // print each row based on the filter option
