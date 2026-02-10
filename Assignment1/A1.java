@@ -48,13 +48,13 @@ public class A1 {
 
         System.out.println("Row count: " + rows); // print the number of rows in the table
 
-        System.out.println("Sorting table naturally:");
+        System.out.println("Sorting table rows by natural order:");
         table.sortByNaturalRows(); // sort the rows in natural order (alphabetically)
 
         table.printTable(rows); // print all rows
         System.out.println(" "); // print a blank line for separation
         
-        System.out.println("Sorting table Comparator:");
+        System.out.println("Sorting table rows by custom comparator:");
         //Comparator<Row> comparator = (r1, r2) -> r1.getText().compareToIgnoreCase(r2.getText()); // create a Comparator to sort rows alphabetically (case-insensitive)
         Comparator<Row> comparator = (r1, r2) -> r2.getText().compareTo(r1.getText()); // create a Comparator to sort rows in reverse alphabetical order (case-insensitive)
         table.sortByComparator(comparator);
