@@ -1,5 +1,8 @@
 {
-  "java.project.sourcePaths": ["Assignment1"],
+  "java.project.sourcePaths": [
+    "Assignment1",
+    "Sequence"
+  ],
     "java.project.referencedLibraries": [
         "lib/**/*.jar"
     ]
