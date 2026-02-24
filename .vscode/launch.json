@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "StackTest",
+            "request": "launch",
+            "mainClass": "StackTest",
+            "projectName": "MRU-COMP-2503-W26_23852e7c"
+        },
+        {
+            "type": "java",
             "name": "A1",
             "request": "launch",
             "mainClass": "A1",
