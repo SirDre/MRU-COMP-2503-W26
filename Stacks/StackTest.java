@@ -23,8 +23,28 @@ public class StackTest {
         return true; // Is a palindrome
     }
 
-    public static void main(String[] args) {
+    public void reWithStack(int[] arr) {
         MyStack<Integer> stack = new ArrayStack<>(10);
+        
+        // Push each element of the array onto the stack
+        for (int i = 0; i < arr.length; i++) {
+            stack.push(arr[i]);
+        }
+
+        // Pop each element from the stack and store it back in the array
+        for(int i = 0; i < arr.length; i++) { 
+            arr[i] = stack.pop();
+        }
+        
+        // Pop each element from the stack and print it
+        while (!stack.isEmpty()) {
+            System.out.println(stack.pop());
+        }
+    }
+
+    public static void main(String[] args) {
+        ArrayStack<Integer> stack = new ArrayStack<>(10); 
+        // You can also test with LinkedListStack by changing the type to MyStack<Integer> and initializing it with new LinkedListStack<>()
 
         
         stack.push(10);
@@ -43,7 +63,16 @@ public class StackTest {
             System.out.println("Popped element: " + stack.pop());
         }
         
-        // Uncommenting the following line will throw an exception since the stack is empty
-        // System.out.println(stack.pop());
+        StackTest test = new StackTest();
+        System.out.println("PALINDROME TESTS:");
+        System.out.println("CAR - " + test.isPalindrome("car"));
+        System.out.println("RACECAR - " + test.isPalindrome("racecar"));   
+
+
+        StackTest test2 = new StackTest();
+        int[] arr = {1, 2, 3, 4, 5, 6, 19, 20};
+        test2.reWithStack(arr);
+        System.out.println("Reversed array: " + Arrays.toString(arr)); // Should print [20, 19, 6, 5, 4, 3, 2, 1]
+ 
     }
 }

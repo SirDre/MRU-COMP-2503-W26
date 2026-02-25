@@ -4,8 +4,9 @@ public class ArrayStack<T> implements MyStack<T> {
     private T[] stack;
     private int top;
 
-    public ArrayStack(int capacity) {
-      //  stack = (T[]) new Object[capacity];
+    public ArrayStack(int cap) {
+      //  int initialCapacity = Math.max(1, capacity);
+        stack = (T[]) new Object[cap];
         top = -1;
     }
 
@@ -21,25 +22,23 @@ public class ArrayStack<T> implements MyStack<T> {
     }
 
     public T pop() {
-        top--;
         if (isEmpty()) {
-          throw new EmptyStackException();
+            throw new EmptyStackException();
         }
         T x = stack[top];
-      //  stack[top] = null; // Clear reference for garbage collection
-   
+        stack[top] = null;
+        top--;
+
         return x;
     }
-
-    @SuppressWarnings("unchecked")
+ 
     public void push(T x) {
-        if (top == stack.length) {
-            //throw new IllegalStateException("Stack is full");
-            T[] newStack = (T[]) new Object[stack.length * 2];
+        if (top + 1 == stack.length) {
+            T[] newStack = (T[]) new Object[Math.max(1, stack.length * 2)];
             System.arraycopy(stack, 0, newStack, 0, stack.length);
             stack = newStack;
         }
-        
+
         top++;
         stack[top] = x;
     }
