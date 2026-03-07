@@ -21,7 +21,6 @@ import java.util.Scanner;
 public class Table {
     
     private ArrayList<Row> rows;  // List of rows in the table
-    private String[] headers;    // Array of column headers
     private int id;             // Unique ID for each row
  
     //Constructor: Creates an empty table. Row IDs will start at 1. */
@@ -101,42 +100,42 @@ public class Table {
         }
     }
 
-    /**
-     * Prints the header row followed by up to {@code maxRows} data rows,
-     * using auto-computed column widths for alignment.
-     *
-     * @param maxRows max data rows to print; 0 (or larger than available) prints all.
-     */
+    // Print the table with formatted columns. 
     public void printTable(int maxRows) {
         if (rows.isEmpty()) {
             return;
         }
-
-        int cols = rows.get(0).getColCount();
-        int[] cWidths = new int[cols];
-        int hWidths = 1;
-
-        // Calculate column widths and max id digit count
-        for (int i = 0; i < rows.size(); i++) {
-            Row row = rows.get(i);
-            if (i > 0) { // skip header 
-                hWidths = Math.max(hWidths, String.valueOf(row.getId()).length());
-            }
-            for (int j = 0; j < cols; j++) {
-                String val = row.getColumn(j);
-                 
-                int len = val.length() + 1;
-                cWidths[j] = Math.max(cWidths[j], len);
-            }
-        }
- 
-        // Print header then data rows
-        System.out.println(rows.get(0).format(true, hWidths, cWidths));
         
-        for (int i = 1; i <= rows.size() - 1; i++) {
-            System.out.println(rows.get(i).format(false, hWidths, cWidths));
+        // If r is 0, the whole table is printed, otherwise the first r rows are printed
+        int limit;
+        if (maxRows <= 0 || maxRows > rows.size() - 1) {
+            limit = rows.size() - 1; // adjust to print all data rows
+        } else {
+            limit = maxRows;
+        }
+
+        // Print header then data rows
+        System.out.println(rows.get(0).format(true, 2, new int[]{9,9,5,14,18}));
+        
+        for (int i = 1; i <= limit; i++) { 
+            System.out.println(rows.get(i).format(false, 2, new int[]{9,9,5,14,18}));
         }
     }
+
+    // Sorts the table by the specified column name.
+    public void sortByComparator(String colName) {
+        int colIndex = getColumnIndex(colName);
+ 
+        if (rows.size() <= 1) {
+            return;
+        }
+
+        Row header = rows.remove(0);
+       
+        rows.sort((a, b) -> a.getColumn(colIndex).trim().compareTo(b.getColumn(colIndex).trim())); // sort by column value
+        rows.add(0, header); 
+    }
+
 
     @Override
     public String toString() {

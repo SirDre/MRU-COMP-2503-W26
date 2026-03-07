@@ -20,6 +20,7 @@ import java.io.FileNotFoundException;
 public class A2 {
 
     public static void main(String[] args) throws FileNotFoundException {
+
         if (args.length < 1) {
             System.out.println("Usage: java A2 a2_data.csv");
             System.exit(1);
@@ -28,18 +29,31 @@ public class A2 {
         String fileName = args[0];
         Table table = new Table(fileName); 
 
-        //Header line
+        //0. File Name
         System.out.println("0 " + fileName);
+
+        int rowCount = table.getRowCount() - 1; // exclude header row
 
         //1. First Table
         System.out.println();
         System.out.println("1. First Table");
         System.out.println("----------------------------");
-        System.out.println(table.getRowCount() - 1);   // exclude header row
+        System.out.println(rowCount); 
         System.out.println("--------------------------");
-        table.printTable(0);                            // 0 = print all rows
+        table.printTable(0);  
         System.out.println("--------------------------");
 
+        //2. Sort By Colour
+        System.out.println();
+        System.out.println("2. Sort By Colour");
+        System.out.println("----------------------------");
+ 
+        String sort = "colour";
 
+        table.sortByComparator(sort);
+        System.out.println(rowCount); 
+        System.out.println("----------------------------");
+        table.printTable(0);
+        System.out.println("----------------------------");
     }
 }
