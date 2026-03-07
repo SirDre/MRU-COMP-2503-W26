@@ -55,5 +55,17 @@ public class A2 {
         System.out.println("----------------------------");
         table.printTable(0);
         System.out.println("----------------------------");
+
+
+        //3. Select colour = black
+        System.out.println();
+        System.out.println("3. Select colour = black");
+        System.out.println("----------------------------");
+
+        Table query = table.select(sort, "black");
+        System.out.println(query.getRowCount() - 1); 
+        System.out.println("----------------------------");
+        query.printTable(0);
+        System.out.println("----------------------------");
     }
 }

@@ -142,6 +142,28 @@ public class Table {
         rows.add(0, header); 
     }
 
+    // Selects returns a new table that contains all of the columns of the exiting table but with only the rows from the table where column field contains the string value. 
+    public Table select(String field, String value) {
+        Table result = new Table();
+        int index = getColumnIndex(field);
+ 
+
+        // Copy header into result
+        Row header = getHeader();
+        if (header != null) {
+            result.addRow(new Row(header.getId(), header.getCols()));
+        }
+
+        // Copy matching data rows
+        for (int i = 1; i < rows.size(); i++) {
+            Row row = rows.get(i);
+            if (row.getColumn(index).trim().equals(value.trim())) {
+                result.addRow(new Row(row.getId(), row.getCols()));
+            }
+        }
+
+        return result;
+    }
 
     @Override
     public String toString() {
