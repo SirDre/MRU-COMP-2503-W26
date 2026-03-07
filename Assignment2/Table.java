@@ -87,8 +87,8 @@ public class Table {
     }
     
     // Add a new row to the table with the given CSV line, assigning it a unique ID
-    public void addRow(int nextId, String csv) {
-        rows.add(new Row(nextId, csv));
+    public void addRow(int nextId, String s) {
+        rows.add(new Row(nextId, s));
         id = nextId + 1;
     }
 
@@ -98,6 +98,12 @@ public class Table {
         if (r.getId() >= id) {
             id = r.getId() + 1;
         }
+    }
+
+    // Add a new row to the table with the given column values, assigning it a unique ID
+    public void addRow(int id, String[] cols) {
+        String s = String.join(",", cols);
+        addRow(id, s);            
     }
 
     // Print the table with formatted columns. 
