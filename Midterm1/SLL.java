@@ -71,14 +71,14 @@ public class SLL <T> {
          addHead( d); 
       } else {
          Node<T> curr = getHead();
-	 // we can do this because we know curr is not null 
-	 while ( curr.getNext() != null) {
+         // we can do this because we know curr is not null 
+         while ( curr.getNext() != null) {
             curr = curr.getNext();
          } 
-	 // now curr is the last item in the list. 
-	 curr.setNext( n);
-	 setTail(n);
-	 size++;
+         // now curr is the last item in the list. 
+         curr.setNext( n);
+         setTail(n);
+         size++;
       }
    }
 
