@@ -69,6 +69,28 @@ public class Row implements Comparable<Row> {
         return columns.length; 
     }
 
+    // Custom: String format the row as a string for printTable
+    public String format(boolean isHeader, int hWidth, int[] cWidths) {
+        String result = "";
+        if (isHeader) {
+            result += String.format("%" + hWidth + "s", "#");
+        } else {
+            result += String.format("%" + hWidth + "d:", id);
+        }
+
+        int spacing = Math.min(getColCount(), cWidths.length); // Limit spacing to the number of columns
+
+        for (int i = 0; i < spacing; i++) {
+            String val = columns[i];
+            if (i < spacing - 1) {
+                val += ",";
+            }
+
+            result += "\t" + String.format("%-" + cWidths[i] + "s", val);
+        }
+        return result;
+    }
+
     @Override
     public int compareTo(Row other) {
         return Integer.compare(this.id, other.id);

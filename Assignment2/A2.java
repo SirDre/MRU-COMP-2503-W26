@@ -23,7 +23,7 @@ public class A2 {
     public static void main(String[] args) throws FileNotFoundException {
 
         if(args.length < 1) {
-            System.out.println("Usage: java -jar A2.jar <filename>");
+            System.out.println("Usage: java A2 <filename>");
             System.exit(1);
         }
 
@@ -33,29 +33,31 @@ public class A2 {
         //0. File Name
         System.out.println("0 " + fileName);
 
-        int rowCount = 0; // exclude header row
+        int rowCount = table.getRowCount() - 1; // exclude header row
+        int rows = 10; //first 10 rows
 
-        //1. First Table
+
+        //1. First Table - first 10 rows
         System.out.println();
-        System.out.println("1. First Table");
+        System.out.println("1. First Table (first 10)");
         System.out.println("----------------------------");
         table.sort(); // sort by natural ordering (id)
-        System.out.println(rowCount); 
+        System.out.println(rows); 
         System.out.println("--------------------------");
-        table.printTable(0);  
+        table.printTable(rows);  
         System.out.println("--------------------------");
 
-        //2. Sort By Colour
+        //2. Sort By Colour = first 10
         System.out.println();
-        System.out.println("2. Sort By Colour");
+        System.out.println("2. Sort By Colour (first 10)");
         System.out.println("----------------------------");
  
         String sort = "colour";
 
-         
-        System.out.println(rowCount); 
+        table.sortByComparator(sort);
+        System.out.println(rows); 
         System.out.println("--------------------------");
-        table.printTable(0);
+        table.printTable(rows);
         System.out.println("--------------------------");
 
 
@@ -63,19 +65,23 @@ public class A2 {
         System.out.println();
         System.out.println("3. Select colour = black");
         System.out.println("----------------------------");
-  
+        Table query = table.select(sort, "black");
+        System.out.println(query.getRowCount() - 1); 
         System.out.println("--------------------------");
-    
+        query.printTable(0);
         System.out.println("--------------------------");
 
 
-        //4. Project species, count, notes
+        //4. Project species, count, notes - the first 10 rows
+        
+
         System.out.println();
-        System.out.println("4. Project species, count, notes");
+        System.out.println("4. Project species, count, notes (first 10)");
         System.out.println("-------------------------------");
- 
+        Table projected = table.project(new String[]{"species", "count", "notes"});
+        System.out.println(((projected.getRowCount() - 1) < rows) ? (projected.getRowCount() - 1) : rows); 
         System.out.println("--------------------------");
- 
+        projected.printTable(rows);
         System.out.println("--------------------------");
 
     }

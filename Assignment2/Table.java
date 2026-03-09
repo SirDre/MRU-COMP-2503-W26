@@ -83,8 +83,8 @@ public class Table {
     }
 
     // Sorts the table by the specified column name.
-    public void sortByComparator(String colName) {
-        int index = 1;
+    public void sortByComparator(String field) {
+        int index = getFieldIndex(field);
  
         if (rows.size() <= 1) {
             return;
@@ -98,22 +98,26 @@ public class Table {
     }    
 
     // Print the table with formatted columns. 
-    public void printTable(int maxRows) {
+    public void printTable(int r) {
         if(rows.isEmpty()) {
             return;
         }
+
         // If r is 0, the whole table is printed, otherwise the first r rows are printed
         int limit;
-        if (maxRows <= 0 || maxRows > rows.size() - 1) {
+        if (r <= 0 ) {
             limit = rows.size() - 1; // adjust to print all data rows
         } else {
-            limit = maxRows;
+            limit = r;
         }
 
+        int[] columnWidths = new int[] {9,8,5,12,16}; // column widths based on header
+
+
         // Print header then data rows
-        System.out.println(rows.get(0));
+        System.out.println(rows.get(0).format(true, 2, columnWidths));
         for (int i = 1; i <= limit; i++) { 
-            System.out.println(rows.get(i));
+            System.out.println(rows.get(i).format(false, 2, columnWidths));
         }
     }
 
@@ -121,7 +125,43 @@ public class Table {
     public Table project(String[] cols)  {
         
         Table result = new Table();
-  
+        int[] indices = new int[cols.length];
+
+        // Get the column indices for the specified column names
+        for (int i = 0; i < cols.length; i++) {
+            indices[i] = getFieldIndex(cols[i]);
+        }
+
+        // Copy rows with only the projected columns
+        for (Row row : rows) {
+            String[] projected = new String[cols.length];
+            for (int i = 0; i < indices.length; i++) {
+                projected[i] = row.getColumn(indices[i]); // Get the value of the specified column for this row
+            }
+            result.addRow(new Row(row.getId(), projected));
+        }
+        return result;
+    }
+
+    // Selects returns a new table that contains all of the columns of the exiting table but with only the rows from the table where column field contains the string value. 
+    public Table select(String field, String value) {
+        Table result = new Table();
+        int index = getFieldIndex(field);
+ 
+        // Copy header into result
+        Row header = getHeader();
+
+        if (header != null) {
+            result.addRow(new Row(header.getId(), header.getCols()));
+        }
+
+        // Copy matching data rows
+        for (Row row : rows) {
+            if (row.getColumn(index).contains(value)) {
+                result.addRow(new Row(row.getId(), row.getCols())); // Add matching row to result
+            }
+        }
+
         return result;
     }
 
