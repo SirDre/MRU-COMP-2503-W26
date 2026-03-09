@@ -34,7 +34,7 @@ public class Table {
         Scanner sc = new Scanner(new File(fileName));
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
-            addRow(id, line.trim().isEmpty() ? "" : line);
+            addRow(id, line);
         }
         sc.close();        
     }
@@ -60,16 +60,15 @@ public class Table {
         this.id = Id;
     }
 
+    // Overloaded method: Add a new row to the table
+    public void addRow(Row r) {
+        rows.add(r);
+    }
+
     // Overloaded method: Add a new row to the table with the given CSV line, assigning it a unique ID
     public void addRow(int Id, String s) {
         rows.add(new Row(Id, s));
         id = Id + 1; // add
-    }
-
-    // Overloaded method: Add a new row to the table
-    public void addRow(Row r) {
-        rows.add(r);
-
     }
 
     // Overloaded method: Add a new row to the table
@@ -126,6 +125,24 @@ public class Table {
         return result;
     }
 
+
+    // Accessors: Get the 0-based column index of field from the Header
+    public int getFieldIndex(String field) {
+        Row header = getHeader();
+        if (header == null) {
+            return 0;
+        }
+
+        String[] cols = header.getCols();
+
+        for (int i = 0; i < cols.length; i++) {
+            if (cols[i].trim().equals(field.trim())) {
+                return i;
+            }
+        }
+
+        return 0;
+    }
 
     // Custom: Get the number of rows in the table, including the header row
     public int getRowCount() {

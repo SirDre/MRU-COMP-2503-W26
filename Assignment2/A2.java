@@ -20,7 +20,7 @@ import java.io.FileNotFoundException;
 
 public class A2 {
 
-    public void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException {
 
         if(args.length < 1) {
             System.out.println("Usage: java -jar A2.jar <filename>");
@@ -28,7 +28,7 @@ public class A2 {
         }
 
         String fileName = args[0];
-        Table table = new Table();
+        Table table = new Table(fileName);
 
         //0. File Name
         System.out.println("0 " + fileName);
