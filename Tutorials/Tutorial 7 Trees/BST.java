@@ -1,3 +1,6 @@
+import java.util.Queue;
+import java.util.LinkedList;
+
 public class BST<T extends Comparable<T>> {
 /* A Binary search tree */
  
@@ -115,7 +118,16 @@ public class BST<T extends Comparable<T>> {
    /* Add node r to the tree */
       int c = n.compareTo( r);
       if ( c < 0) {
-         // TODO An exercise for the student!
+         if ( r.getLeft() == null)
+            r.setLeft( n);
+         else
+            add( r.getLeft(), n);
+      } else {
+         if ( r.getRight() == null)
+            r.setRight( n);
+         else
+            add( r.getRight(), n);
+         
       }
    }
 
@@ -123,7 +135,10 @@ public class BST<T extends Comparable<T>> {
    /* Return the height of the tree */
       int h = -1;
 
-      // TODO: An exercise for the student!
+      if ( r != null) {
+         h = 1 + Math.max( height( r.getLeft()), height( r.getRight()));
+      }
+
       return h;
    }
 
@@ -133,6 +148,7 @@ public class BST<T extends Comparable<T>> {
 
       if ( r != null)
          System.out.println( r.getData());
+      
    }
 	
    private void inOrderTraversal(BSTNode r) {
@@ -148,16 +164,39 @@ public class BST<T extends Comparable<T>> {
 	
    private void preOrderTraversal(BSTNode r) {
    /* Perform an InOrder traversal of the tree */
-      // TODO: An exercise for the student!
+      if (r == null)
+         return;
+      else {
+         visit( r);
+         preOrderTraversal( r.getLeft());
+         preOrderTraversal( r.getRight());
+      }
    }
 	
    private void postOrderTraversal(BSTNode r) {
    /* Perform a Post order traversal of the tree */
-      // TODO: An exercise for the student!
+      if (r == null)
+         return;
+      else {
+         postOrderTraversal( r.getLeft());
+         postOrderTraversal( r.getRight());
+         visit( r);
+      }
    }
 	
    private void levelOrderTraversal(BSTNode r) {
    /* Perform a level Order traversal of the tree */
-      // TODO: An exercise for the student!
+      if ( r == null)
+         return;
+      Queue<BSTNode> q = new LinkedList<BSTNode>();
+      q.add( r);
+      while ( !q.isEmpty()) {
+         BSTNode n = q.remove();
+         visit( n);
+         if ( n.getLeft() != null)
+            q.add( n.getLeft());
+         if ( n.getRight() != null)
+            q.add( n.getRight());
+      }
    }
 }
