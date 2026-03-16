@@ -34,12 +34,12 @@ public class A2 {
         System.out.println("0 " + fileName);
 
         int rowCount = table.getRowCount() - 1; // exclude header row
-        int rows = 10; //first 10 rows
+        int rows = (args.length > 1 && args[1] != null && !args[1].isBlank()) ? Integer.parseInt(args[1]) : 0;
 
 
         //1. First Table - first 10 rows
         System.out.println();
-        System.out.println("1. First Table (first 10)");
+        System.out.println("1. First Table (first " + rows + ")" );
         System.out.println("----------------------------");
         table.sort(); // sort by natural ordering (id)
         System.out.println(rows); 
@@ -49,7 +49,7 @@ public class A2 {
 
         //2. Sort By Colour = first 10
         System.out.println();
-        System.out.println("2. Sort By Colour (first 10)");
+        System.out.println("2. Sort By Colour (first " + rows + ")");
         System.out.println("----------------------------");
  
         String sort = "colour";
