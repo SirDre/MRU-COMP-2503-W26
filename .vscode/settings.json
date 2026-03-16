@@ -1,0 +1,10 @@
+{
+  "java.project.sourcePaths": [
+    "Assignment2",
+    "Tutorials/Tutorial 5 Stacks",
+    "Tutorials/Tutorial 7 Trees"
+  ],
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ]
+}
