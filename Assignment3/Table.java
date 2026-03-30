@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -21,12 +22,17 @@ import java.util.Scanner;
  */
 
 public class Table {
-    private ArrayList<Row> rows = new ArrayList<>();
     private int id;
+    private ArrayList<Row> rows;
+    private String name; // table name (derived from filename)
+    private HashMap<String, BST> indexes; // column name → BST index
 
+    // Default empty constructor    
     public Table() {
-        this.rows = new ArrayList<>();
-        this.id = 1; 
+        rows    = new ArrayList<>();
+        id      = 1;
+        name    = "";
+        indexes = new HashMap<>();
     }
 
     public Table(String fileName) throws FileNotFoundException {
@@ -77,6 +83,18 @@ public class Table {
         addRow(Id, s);
     }
 
+    /**
+     * Duplicate keys accumulate in the same BST node (ArrayList<Row>).
+     * Time complexity:
+     */
+    public void addIndex(String column) {
+        int col = getFieldIndex(column);
+        BST bst = new BST();
+ 
+        indexes.put(column, bst);
+    }
+
+
     // Sorts the table by natural order (Row id).
     public void sort() {
         Collections.sort(rows);
@@ -117,7 +135,7 @@ public class Table {
         // Calculate the maximum width for each column
         int[] widths = new int[numCols];
 
-        
+
         for (int i = 0; i <= limit && i < rows.size(); i++) {
             Row row = rows.get(i);
             for (int j = 0; j < numCols && j < row.getColCount(); j++) {
@@ -177,6 +195,17 @@ public class Table {
         }
 
         return result;
+    }
+
+    /**
+     * Return a new table that is the union of this table with the given table t. 
+     * Time complexity: O(n + m) where n, m are the row counts.
+     */
+    public Table union(Table t) {
+        if (this.rows.isEmpty()) {
+            return t;
+        }
+        return t;
     }
 
 
